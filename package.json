@@ -1,0 +1,7 @@
+{
+  "name": "instagram_clone",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^5.1.1"
+  }
+}
