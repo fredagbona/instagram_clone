@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'sessions#new'
+  resources :favorites, only: [:index, :create, :destroy]
   resources :posts do
     collection do
       post :confirm

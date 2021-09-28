@@ -1,4 +1,19 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  
+</head>
 
+
+  <div class="row">
+    <div class="col-4">
+      
 
 
 <style>
@@ -108,8 +123,10 @@
     <hr>
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-        <%= image_tag(@user.avatar.url, width: "30px", class: "rounded") if @user.avatar && @user.avatar.url  %>
-        <strong><%= @user.name %></strong>
+         <% @favorite.each do |favorite| %>
+            <%= image_tag(favorite.user.avatar.url, width: "30px", class: "rounded") if favorite.user.avatar && favorite.user.avatar.url  %>
+            <strong><%= favorite.user.name %></strong>
+         <% end %>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small      shadow" aria-labelledby="dropdownUser1">
         <li><%= link_to "Profile", user_path(current_user.id), class: "dropdown-item" %></li>
@@ -136,3 +153,38 @@
 })()
 
 </script>
+    </div>
+    <div class="col-8 ">
+          <h1 class="text-center">Mes favoris</h1>
+    <div class="d-flex justify-content-evenly">
+       <% @favorite.each do |favorite| %>
+            <div class="card me-4" style="width: 18rem;">
+            <%= image_tag(favorite.user.avatar.url, width: "50px", class: "rounded d-flex") if favorite.user.avatar && favorite.user.avatar.url  %><strong><%= favorite.user.name %></strong>
+              <% if favorite.post.image_url %>
+                <%= image_tag favorite.post.image.url , width: "250px", height: "100px", class: "card-img-top" %> <% end %>
+              <div class="card-body">
+                <p class="card-text">Content : <%= favorite.post.content %> </p>
+
+                
+                  
+                    
+
+                  
+               
+                </div>
+              </div>
+            </div>
+        <% end %>
+    </div>
+    
+  </div>
+
+<%= render 'partials/foot' %>
+
+
+
+
+
+
+
+

@@ -18,4 +18,18 @@
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
 
+<% unless @post.user_id == current_user.id %>
+                  <% if @favorite.present? %>
+                    <%= link_to favorite_path(id: @favorite.id), method: :delete, title: "Supprimer des favoris" do %>
+                      <i class="bi bi-heart-fill fs-1" style="color: red;"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to favorites_path(post_id: @post.id), method: :post, title: "Ajouter aux favoris" do %>
+                       <i class="bi bi-heart-fill fs-1" style="color: black;"></i>
+                    <% end %>
+                   <% end %>
+<% end %>
+
+
+
 <%= render 'partials/foot' %>
