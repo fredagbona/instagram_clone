@@ -1,0 +1,6 @@
+<h1>Votre post a été publié </h1>
+<h4>name: <%= @post.user.name %></h4>
+
+<h4>Avec le contenu suivant : </h4>
+<p>content: <%= @post.content %></p>
+<p>image:  <%= image_tag(@post.image.url, width: "200px") if @post.image && @post.image.url   %> </p>
