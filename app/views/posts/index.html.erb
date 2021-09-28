@@ -1,0 +1,54 @@
+<style>
+  body{
+    margin: 0;
+  }
+</style>
+<div class="row">
+  <div class="col-2">
+    <p id="notice"><%= notice %></p>
+  </div>
+  <div class="col-8 ">
+    <h1 class="text-center">Posts</h1>
+    <div class="d-flex justify-content-evenly">
+        <% @posts.each do |post| %>
+            <div class="card me-4" style="width: 18rem;">
+            <%= image_tag(post.user.avatar.url, width: "50px", class: "rounded d-flex") if post.user.avatar && post.user.avatar.url  %><strong><%= post.user.name %></strong>
+              <% if post.image_url %>
+                <%= image_tag post.image.url , width: "250px", height: "100px", class: "card-img-top" %> <% end %>
+              <div class="card-body">
+                <p class="card-text">Content : <%= post.content %> </p>
+
+                <div class="card-text d-flex justify-content-between">
+                  <%= link_to post, title: "See" do %>
+                    <i class="bi bi-eye"></i>
+                  <% end %>
+
+                  <%= link_to edit_post_path(post), title: "Edit" do %>
+                    <i class="bi bi-pencil" style="color: green;"></i>
+                  <% end %>
+
+                  <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' }, title: "Delete" do %>
+                    <i class="bi bi-trash" style="color: red;"></i>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+    </div>
+
+
+
+
+    
+    <br>
+    
+    <%= link_to 'New Post', new_post_path, class: "btn btn-primary text-white " %>
+  </div>
+  <div class="col-2"></div>
+</div>
+
+
+
+
+
+<%= render 'partials/foot' %>

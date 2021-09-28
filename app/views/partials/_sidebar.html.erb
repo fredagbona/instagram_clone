@@ -92,13 +92,16 @@
         <%= link_to "My posts", user_path(current_user.id), class: "nav-link active"%> 
       </li>
       <li>
-        <%= link_to "All posts", user_path(current_user.id), class: "nav-link text-white"%> 
+        <%= link_to "All posts", posts_path(current_user.id), class: "nav-link text-white"%> 
       </li>
       <li>
-        <%= link_to "New post", new_user_path, class: "nav-link text-white"%> 
+        <%= link_to "New post", new_post_path, class: "nav-link text-white"%> 
       </li>
        <li>
         <%= link_to "Edit my profile", edit_user_path, class: "nav-link text-white"%> 
+      </li>
+      <li class="nav-item">
+        <%= link_to "My favorites", user_path(current_user.id), class: "nav-link text-white"%> 
       </li>
       
     </ul>
